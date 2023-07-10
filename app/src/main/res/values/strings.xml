@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">BookMovieReview</string>
+    <string name="textview">BOOK AND MOVIE REVIEW</string>
+    <string name="title_image_for_book">title image for book</string>
+    <string name="button">Button</string>
+    <string name="login">로그인</string>
+    <string name="wise_saying_eng">Wise Saying Eng</string>
+    <string name="wise_saying_kor">Wise Saying Kor</string>
+    <string name="wise_saying_author">Wise Saying Author</string>
+    <string name="id">ID</string>
+    <string name="password">Password</string>
+    <string name="password_confirm">Password 확인</string>
+    <string name="email">Email</string>
+    <string name="find_id">아이디 찾기</string>
+    <string name="boundary_line">|</string>
+    <string name="find_pw">비밀번호 찾기</string>
+    <string name="register">회원가입</string>
+    <string name="id_filter">qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890</string>
+    <string name="email_filter">qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890@.</string>
+    <string name="pw_filter">qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890!@#$%^*-=_</string>
+    <string name="visibility_icon">visibility_icon</string>
+    <string name="register_complete">가입 완료</string>
+    <string name="swipe_to_left">왼쪽으로 슬라이드</string>
+    <string name="darkmode">다크 모드</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="search">검색</string>
+    <string name="open_nav">Open Navigation Drawer</string>
+    <string name="close_nav">Open Navigation Drawer</string>
+    <string name="my_review">내가 작성한 리뷰</string>
+    <string name="participated_in_discussion_board">내가 참여한 토론 게시판</string>
+    <string name="logout">로그아웃</string>
+    <string name="book_and_movie">책/영화</string>
+    <string name="discussion">토의</string>
+    <string name="configuration">환경설정</string>
+    <string name="home">홈</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="book">책</string>
+    <string name="movie">영화</string>
+</resources>
