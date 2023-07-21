@@ -19,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setColors() {
         if (!darkmode) {
-            binding.root.setBackgroundResource(R.color.light_mode_background)
+            binding.root.setBackgroundResource(R.color.light_mode_login_background)
             binding.textLogin.setTextColor(Color.BLACK)
             binding.editId.setTextColor(Color.BLACK)
             binding.editPassword.setTextColor(Color.BLACK)
@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
             binding.switchDarkmode.setTextColor(Color.BLACK)
 
         } else {
-            binding.root.setBackgroundResource(R.color.dark_mode_background)
+            binding.root.setBackgroundResource(R.color.dark_mode_login_background)
             binding.textLogin.setTextColor(Color.WHITE)
             binding.editId.setTextColor(Color.WHITE)
             binding.editPassword.setTextColor(Color.WHITE)
