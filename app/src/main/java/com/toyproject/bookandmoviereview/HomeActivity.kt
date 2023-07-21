@@ -1,5 +1,6 @@
 package com.toyproject.bookandmoviereview
 
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -13,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.toyproject.bookandmoviereview.databinding.ActivityHomeBinding
+import com.toyproject.bookandmoviereview.models.bottomAppBarHeight
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var binding: ActivityHomeBinding
@@ -24,19 +26,19 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        drawerLayout = binding.drawerLayout
-        bottomNavigationView = binding.bottomNavigation
         val toolbar = binding.toolbar
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false) // 앱바에 타이틀이 나오지 않음
 
         val navigationView = binding.navView
         navigationView.setNavigationItemSelectedListener(this)
 
+        drawerLayout = binding.drawerLayout
         val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-        supportActionBar?.setDisplayShowTitleEnabled(false) // 앱바에 타이틀이 나오지 않음
 
+        bottomNavigationView = binding.bottomNavigation
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.bottomHome -> {
@@ -53,7 +55,19 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         if (savedInstanceState == null) {
             replaceFragment(HomeFragment())
+            bottomNavigationView.post {
+                val pixels = bottomNavigationView.measuredHeight.toFloat()
+                // val pixels = bottomNavigationView.measuredHeight.toFloat()
+                // val dp = convertPixelsToDp(this@HomeActivity, pixels)
+                bottomAppBarHeight = pixels
+                // Toast.makeText(this, bottomAppBarHeight.toString(), Toast.LENGTH_SHORT).show()
+            }
         }
+    }
+
+    private fun convertPixelsToDp(context: Context, pixels: Float): Float {
+        val screenPixelDensity = context.resources.displayMetrics.density
+        return pixels / screenPixelDensity
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
