@@ -17,6 +17,11 @@
             android:icon="@drawable/ic_diversity" />
 
         <item
+            android:id="@+id/navConfiguration"
+            android:title="@string/configuration"
+            android:icon="@drawable/ic_settings" />
+
+        <item
             android:id="@+id/navLogout"
             android:title="@string/logout"
             android:icon="@drawable/ic_logout" />
