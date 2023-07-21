@@ -5,9 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.toyproject.bookandmoviereview.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -15,8 +14,6 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var tabLayout: TabLayout
-    private lateinit var viewPager2: ViewPager2
-    private lateinit var vpAdapter: ViewPagerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,33 +26,32 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        /*
         tabLayout = binding.tabLayout
-        viewPager2 = binding.viewpager
-        viewPager2.adapter = vpAdapter
 
-        tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
+        tabLayout.addTab(tabLayout.newTab().setText("책"))
+        tabLayout.addTab(tabLayout.newTab().setText("영화"))
+
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                TODO("Not yet implemented")
+                when (tab!!.position) {
+                    0 -> replaceFragment(HomeBookFragment())
+                    1 -> replaceFragment(HomeMovieFragment())
+                }
             }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                TODO("Not yet implemented")
-            }
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
 
-        viewPager2.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                tabLayout.getTabAt(position)?.select()
-            }
-        })
-        */
+        // 기본 화면을 HomeBookFragment()로 설정
+        if (savedInstanceState == null) {
+            replaceFragment(HomeBookFragment())
+        }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val transaction: FragmentTransaction = childFragmentManager.beginTransaction()
+        transaction.replace(R.id.frameLayout, fragment)
+        transaction.commit()
     }
 
     override fun onDestroyView() {
