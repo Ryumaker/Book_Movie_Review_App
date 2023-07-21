@@ -37,6 +37,12 @@
     <string name="configuration">환경설정</string>
     <string name="home">홈</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="book">책</string>
+    <string name="book_kor">책</string>
+    <string name="book">Book</string>
     <string name="movie">영화</string>
+    <string name="imageview_for_book">Imageview for book</string>
+    <string name="highest_score">최고 평점</string>
+    <string name="most_reviews">리뷰 많은 순</string>
+    <string name="highestscore_imagebutton">Highestscore Imagebutton</string>
+    <string name="most_reviews_imagebutton">MostReviews Imagebutton</string>
 </resources>
