@@ -9,6 +9,19 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.toyproject.bookandmoviereview.databinding.FragmentHomeBookBinding
+import java.util.*
+
+data class ComparableScore(var bookData: BookData) : Comparable<ComparableScore> {
+    override fun compareTo(other: ComparableScore): Int {
+        return ((other.bookData.rating - bookData.rating) * 10).toInt()
+    }
+}
+
+data class ComparableReviews(var bookData: BookData) : Comparable<ComparableReviews> {
+    override fun compareTo(other: ComparableReviews): Int {
+        return other.bookData.numberOfComments - bookData.numberOfComments
+    }
+}
 
 class HomeBookFragment : Fragment() {
     private var _binding: FragmentHomeBookBinding? = null
@@ -20,23 +33,63 @@ class HomeBookFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun prepareBookListData() {
-        var book = BookData("부의 인문학", "우석", 4.5F, 273, "https://image.aladin.co.kr/product/28967/26/cover500/k032836725_1.jpg")
-        bookList.add(book)
+        val pq = PriorityQueue<ComparableScore>()
+
+        var book = BookData("부의 인문학", "우석", 4.3F, 273, "https://image.aladin.co.kr/product/28967/26/cover500/k032836725_1.jpg")
+        pq.add(ComparableScore(book))
 
         book = BookData("세이노의 가르침", "세이노", 5.0F, 34, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
-        bookList.add(book)
+        pq.add(ComparableScore(book))
 
-        book = BookData("세이노의 가르침", "세이노", 3.5F, 12, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
-        bookList.add(book)
-
-        book = BookData("세이노의 가르침", "세이노", 3.0F, 5, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
-        bookList.add(book)
-
-        book = BookData("세이노의 가르침", "세이노", 3.5F, 12, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
-        bookList.add(book)
+        book = BookData("세이노의 가르침", "세이노", 3.7F, 12, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
+        pq.add(ComparableScore(book))
 
         book = BookData("세이노의 가르침", "세이노", 3.0F, 5, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
-        bookList.add(book)
+        pq.add(ComparableScore(book))
+
+        book = BookData("세이노의 가르침", "세이노", 3.5F, 12, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
+        pq.add(ComparableScore(book))
+
+        book = BookData("세이노의 가르침", "세이노", 3.2F, 5, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
+        pq.add(ComparableScore(book))
+
+        while (pq.isNotEmpty()) {
+            pq.poll()?.let { bookList.add(it.bookData) }
+        }
+
+        recyclerViewBookAdapter!!.notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun sortBookListDataByHighestScore() {
+        val pq = PriorityQueue<ComparableScore>()
+
+        for (bookData in bookList) {
+            pq.add(ComparableScore(bookData))
+        }
+
+        bookList.clear()
+
+        while (pq.isNotEmpty()) {
+            pq.poll()?.let { bookList.add(it.bookData) }
+        }
+
+        recyclerViewBookAdapter!!.notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun sortBookListDataByMostReviews() {
+        val pq = PriorityQueue<ComparableReviews>()
+
+        for (bookData in bookList) {
+            pq.add(ComparableReviews(bookData))
+        }
+
+        bookList.clear()
+
+        while (pq.isNotEmpty()) {
+            pq.poll()?.let { bookList.add(it.bookData) }
+        }
 
         recyclerViewBookAdapter!!.notifyDataSetChanged()
     }
@@ -62,6 +115,16 @@ class HomeBookFragment : Fragment() {
         recyclerView!!.adapter = recyclerViewBookAdapter
 
         prepareBookListData()
+
+        // 최고 평점 버튼 클릭 시
+        binding.buttonHighestScore.setOnClickListener {
+            sortBookListDataByHighestScore()
+        }
+
+        // 리뷰 많은 순 버튼 클릭 시
+        binding.buttonMostReviews.setOnClickListener {
+            sortBookListDataByMostReviews()
+        }
     }
 
     override fun onDestroyView() {
