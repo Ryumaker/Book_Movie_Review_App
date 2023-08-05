@@ -42,8 +42,9 @@
                 android:isIndicator="true"
                 android:numStars="5"
                 android:rating="0"
-                android:stepSize="0.5"
-                android:progressTint="#FFBA49" />
+                android:stepSize="0.1"
+                android:progressTint="#FFBA49"
+                android:secondaryProgressTint="#00000000" />
 
             <TextView
                 android:id="@+id/textNumberOfComments"
