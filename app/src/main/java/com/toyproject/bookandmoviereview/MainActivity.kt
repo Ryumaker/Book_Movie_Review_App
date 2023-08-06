@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
                     if (x1 > x2) {
                         val intent = Intent(this, LoginActivity::class.java)
                         startActivity(intent)
+                        overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out)
                         finish()
                     }
                 }

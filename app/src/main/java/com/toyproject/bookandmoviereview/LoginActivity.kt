@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.toyproject.bookandmoviereview.databinding.ActivityLoginBinding
-
 import com.toyproject.bookandmoviereview.models.darkmode
 
 class LoginActivity : AppCompatActivity() {
