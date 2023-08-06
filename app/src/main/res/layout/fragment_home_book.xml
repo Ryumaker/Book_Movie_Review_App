@@ -78,7 +78,7 @@
                         android:text="@string/highest_score"
                         android:textAlignment="center"
                         android:textSize="15sp"
-                        android:fontFamily="@font/noto_sans_kr_bold" />
+                        android:fontFamily="@font/noto_sans_kr_medium" />
                 </LinearLayout>
 
                 <LinearLayout

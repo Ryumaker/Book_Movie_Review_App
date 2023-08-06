@@ -1,6 +1,7 @@
 package com.toyproject.bookandmoviereview
 
 import android.annotation.SuppressLint
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -115,15 +116,21 @@ class HomeBookFragment : Fragment() {
         recyclerView!!.adapter = recyclerViewBookAdapter
 
         prepareBookListData()
+        binding.textHighestScore.setTypeface(null, Typeface.BOLD)
+        binding.textMostReviews.setTypeface(null, Typeface.NORMAL)
 
         // 최고 평점 버튼 클릭 시
         binding.buttonHighestScore.setOnClickListener {
             sortBookListDataByHighestScore()
+            binding.textHighestScore.setTypeface(null, Typeface.BOLD)
+            binding.textMostReviews.setTypeface(null, Typeface.NORMAL)
         }
 
         // 리뷰 많은 순 버튼 클릭 시
         binding.buttonMostReviews.setOnClickListener {
             sortBookListDataByMostReviews()
+            binding.textHighestScore.setTypeface(null, Typeface.NORMAL)
+            binding.textMostReviews.setTypeface(null, Typeface.BOLD)
         }
     }
 
