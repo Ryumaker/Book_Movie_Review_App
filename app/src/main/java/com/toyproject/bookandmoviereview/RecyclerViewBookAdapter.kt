@@ -1,9 +1,6 @@
 package com.toyproject.bookandmoviereview
 
 import android.annotation.SuppressLint
-import android.graphics.Bitmap
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +16,7 @@ class RecyclerViewBookAdapter constructor(private val getFragment: HomeBookFragm
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textListTitle: TextView = itemView.findViewById(R.id.textListTitle)
         val textListAuthor: TextView = itemView.findViewById(R.id.textListAuthor)
-        val ratingBar: RatingBar = itemView.findViewById(R.id.ratingBar)
+        val textRating: TextView = itemView.findViewById(R.id.textRating)
         val textNumberOfComments: TextView = itemView.findViewById(R.id.textNumberOfComments)
         val imageBook: ImageView = itemView.findViewById(R.id.imageBook)
         val layoutListItem: CardView = itemView.findViewById(R.id.layoutListItem)
@@ -38,7 +35,7 @@ class RecyclerViewBookAdapter constructor(private val getFragment: HomeBookFragm
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textListTitle.text = bookList[position].title
         holder.textListAuthor.text = bookList[position].author
-        holder.ratingBar.rating = bookList[position].rating
+        holder.textRating.text = bookList[position].rating.toString()
         holder.textNumberOfComments.text = "(" + bookList[position].numberOfComments.toString() + ")"
 
         // Image load by imageUrl
