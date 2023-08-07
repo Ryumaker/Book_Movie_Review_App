@@ -35,15 +35,18 @@
             android:layout_height="wrap_content"
             android:id="@+id/bottomAppbar"
             android:layout_gravity="bottom"
-            android:background="@color/white"
+            android:backgroundTint="@color/white"
             app:fabCradleMargin="10dp"
             app:fabCradleRoundedCornerRadius="50dp" >
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/bottomNavigation"
+                android:background="@android:color/transparent"
+                app:labelVisibilityMode="labeled"
                 app:menu="@menu/bottom_menu"
-                app:itemIconSize="30sp" />
+                app:itemIconSize="30sp"
+                app:itemIconTint="@drawable/item_selector" />
         </com.google.android.material.bottomappbar.BottomAppBar>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
