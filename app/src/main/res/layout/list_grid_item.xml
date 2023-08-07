@@ -29,29 +29,32 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <RatingBar
-                android:id="@+id/ratingBar"
-                style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+            <ImageView
+                android:id="@+id/iconStar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:rating="0"
-                android:stepSize="0.1"
-                android:progressTint="#FFBA49"
-                android:secondaryProgressTint="#00000000" />
+                android:src="@drawable/ic_star_rate" />
+
+            <TextView
+                android:id="@+id/textRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5.0"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginStart="3dp" />
 
             <TextView
                 android:id="@+id/textNumberOfComments"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="(273)"
-                android:textColor="@color/black"
+                android:textColor="#9B9B9B"
                 android:textSize="15sp"
                 android:layout_marginStart="5dp"/>
         </LinearLayout>
