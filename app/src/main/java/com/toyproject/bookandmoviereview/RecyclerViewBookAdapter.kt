@@ -1,14 +1,15 @@
 package com.toyproject.bookandmoviereview
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
@@ -43,6 +44,8 @@ class RecyclerViewBookAdapter constructor(private val getFragment: HomeBookFragm
 
         holder.layoutListItem.setOnClickListener {
             Toast.makeText(getFragment.requireContext(), bookList[position].title, Toast.LENGTH_SHORT).show()
+            val intent = Intent(holder.itemView.context, BookReviewListActivity::class.java)
+            ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
     }
 }
