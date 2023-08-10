@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -43,8 +42,11 @@ class RecyclerViewBookAdapter constructor(private val getFragment: HomeBookFragm
         Glide.with(holder.itemView.context).load(bookList[position].imageUrl).into(holder.imageBook)
 
         holder.layoutListItem.setOnClickListener {
-            Toast.makeText(getFragment.requireContext(), bookList[position].title, Toast.LENGTH_SHORT).show()
             val intent = Intent(holder.itemView.context, BookReviewListActivity::class.java)
+            intent.putExtra("title", bookList[position].title)
+            intent.putExtra("rating", bookList[position].rating.toString())
+            intent.putExtra("numberOfComments", bookList[position].numberOfComments.toString())
+            intent.putExtra("imageUrl", bookList[position].imageUrl)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
     }
