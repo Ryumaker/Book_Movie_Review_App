@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="light_mode_background">#FFFFFF</color>
-    <color name="dark_mode_background">#1E1E20</color>
+    <color name="light_mode_login_background">#FFFFFF</color>
+    <color name="dark_mode_login_background">#1E1E20</color>
     <color name="light_mode_login_button_background">#228DDB</color>
     <color name="dark_mode_login_button_background">#343638</color>
     <color name="light_mode_toolbar_background">#FFB400</color>
     <color name="dark_mode_toolbar_background">#1E1E20</color>
+    <color name="light_mode_home_background">#DCDCDC</color>
+    <color name="dark_mode_home_background">#1E1E20</color>
+    <color name="horizontal_chart">#FFB400</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
