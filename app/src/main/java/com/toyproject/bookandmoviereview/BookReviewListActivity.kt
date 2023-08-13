@@ -2,9 +2,7 @@ package com.toyproject.bookandmoviereview
 
 import android.R.attr.value
 import android.annotation.SuppressLint
-import android.content.res.AssetManager
 import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -13,24 +11,26 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.github.mikephil.charting.charts.HorizontalBarChart
 import com.github.mikephil.charting.components.Description
+import com.github.mikephil.charting.components.MarkerView
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.toyproject.bookandmoviereview.databinding.ActivityBookReviewListBinding
 
-class MyValueFormatter(private val values: Array<String>) : ValueFormatter() {
+class XAxisValueFormatter : ValueFormatter() {
     private var index = 0
 
     override fun getFormattedValue(value: Float): String {
         index = value.toInt()
         return when (index) {
-            0 -> "1"
-            1 -> "2"
-            2 -> "3"
-            3 -> "4"
-            4 -> "5"
+            0 -> "1★"
+            1 -> "2★"
+            2 -> "3★"
+            3 -> "4★"
+            4 -> "5★"
             else -> throw IndexOutOfBoundsException("index out")
         }
     }
@@ -59,8 +59,18 @@ class BookReviewListActivity : AppCompatActivity() {
         Glide.with(this).load(imageUrl).into(binding.imageBook)
         binding.textRatingsAndReviews.text = "Ratings & Reviews (${numberOfComments})"
 
+        binding.textRating.text = rating
+        binding.textNumberOfReviews.text = "$numberOfComments Reviews"
+
         if (numberOfComments != null) {
             setSkillGraph(numberOfComments.toFloat())
+            val ratings =  ArrayList<Float>()
+            ratings.add(27f) // 1★
+            ratings.add(45f) // 2★
+            ratings.add(65f) // 3★
+            ratings.add(77f) // 4★
+            ratings.add(93f) // 5★
+            setGraphData(ratings)
         }
     }
 
@@ -76,13 +86,13 @@ class BookReviewListActivity : AppCompatActivity() {
         return true
     }
 
-    private fun setGraphData() {
+    private fun setGraphData(ratings: ArrayList<Float>) {
         val entries = ArrayList<BarEntry>()
-        entries.add(BarEntry(0f, 27f))
-        entries.add(BarEntry(1f, 45f))
-        entries.add(BarEntry(2f, 65f))
-        entries.add(BarEntry(3f, 77f))
-        entries.add(BarEntry(4f, 93f))
+        entries.add(BarEntry(0f, ratings[0])) // 1★
+        entries.add(BarEntry(1f, ratings[1])) // 2★
+        entries.add(BarEntry(2f, ratings[2])) // 3★
+        entries.add(BarEntry(3f, ratings[3])) // 4★
+        entries.add(BarEntry(4f, ratings[4])) // 5★
 
         val barDataSet = BarDataSet(entries, "Bar Data Set")
         barDataSet.setColors(
@@ -95,6 +105,8 @@ class BookReviewListActivity : AppCompatActivity() {
 
         chart.setDrawBarShadow(true)
         barDataSet.barShadowColor = Color.argb(40, 150, 150, 150)
+        barDataSet.valueFormatter = DefaultValueFormatter(0) // 그래프 데이터를 정수형으로 변환
+        barDataSet.valueTextSize = 10f
         val data = BarData(barDataSet)
         data.barWidth = 0.9f
         chart.data = data
@@ -105,18 +117,19 @@ class BookReviewListActivity : AppCompatActivity() {
         chart = binding.chart
         chart.setDrawBarShadow(false)
         val description = Description()
-        description.text = ""
+        description.isEnabled = false
         chart.description = description
         chart.legend.isEnabled = false
         chart.setPinchZoom(false)
         chart.setDrawValueAboveBar(false)
-        chart.setTouchEnabled(false)
+        chart.setTouchEnabled(true)
 
         val xAxis = chart.xAxis
         xAxis.setDrawGridLines(false)
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.isEnabled = true
         xAxis.setDrawAxisLine(false)
+        xAxis.granularity = 1f
 
         val yLeft = chart.axisLeft
         yLeft.axisMaximum = reviews
@@ -124,16 +137,16 @@ class BookReviewListActivity : AppCompatActivity() {
         yLeft.isEnabled = false
 
         xAxis.labelCount = 5
-        val values = arrayOf("1", "2", "3", "4", "5")
-        xAxis.valueFormatter = MyValueFormatter(values)
+        xAxis.valueFormatter = XAxisValueFormatter()
         xAxis.textSize = 14f
 
         val yRight = chart.axisRight
         yRight.setDrawAxisLine(true)
         yRight.setDrawGridLines(false)
         yRight.isEnabled = false
+        yRight.axisMaximum = 0f
+        yRight.axisMinimum = 0f
 
-        setGraphData()
         chart.animateY(1000)
     }
 }
