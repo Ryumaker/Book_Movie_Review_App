@@ -45,4 +45,7 @@
     <string name="most_reviews">리뷰 많은 순</string>
     <string name="highestscore_imagebutton">Highestscore Imagebutton</string>
     <string name="most_reviews_imagebutton">MostReviews Imagebutton</string>
+    <string name="title_activity_book_review">BookReviewActivity</string>
+    <string name="recommended">Recommended</string>
+    <string name="icon_star">★</string>
 </resources>
