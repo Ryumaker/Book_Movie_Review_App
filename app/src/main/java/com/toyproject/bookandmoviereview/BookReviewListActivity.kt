@@ -2,10 +2,13 @@ package com.toyproject.bookandmoviereview
 
 import android.R.attr.value
 import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.Canvas
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
@@ -26,11 +29,11 @@ class XAxisValueFormatter : ValueFormatter() {
     override fun getFormattedValue(value: Float): String {
         index = value.toInt()
         return when (index) {
-            0 -> "1★"
-            1 -> "2★"
-            2 -> "3★"
-            3 -> "4★"
-            4 -> "5★"
+            0 -> "★"
+            1 -> "★★"
+            2 -> "★★★"
+            3 -> "★★★★"
+            4 -> "★★★★★"
             else -> throw IndexOutOfBoundsException("index out")
         }
     }
@@ -65,11 +68,11 @@ class BookReviewListActivity : AppCompatActivity() {
         if (numberOfComments != null) {
             setSkillGraph(numberOfComments.toFloat())
             val ratings =  ArrayList<Float>()
-            ratings.add(27f) // 1★
-            ratings.add(45f) // 2★
-            ratings.add(65f) // 3★
-            ratings.add(77f) // 4★
-            ratings.add(93f) // 5★
+            ratings.add(27f) // ★
+            ratings.add(45f) // ★★
+            ratings.add(65f) // ★★★
+            ratings.add(77f) // ★★★★
+            ratings.add(93f) // ★★★★★
             setGraphData(ratings)
         }
     }
@@ -88,11 +91,11 @@ class BookReviewListActivity : AppCompatActivity() {
 
     private fun setGraphData(ratings: ArrayList<Float>) {
         val entries = ArrayList<BarEntry>()
-        entries.add(BarEntry(0f, ratings[0])) // 1★
-        entries.add(BarEntry(1f, ratings[1])) // 2★
-        entries.add(BarEntry(2f, ratings[2])) // 3★
-        entries.add(BarEntry(3f, ratings[3])) // 4★
-        entries.add(BarEntry(4f, ratings[4])) // 5★
+        entries.add(BarEntry(0f, ratings[0])) // ★
+        entries.add(BarEntry(1f, ratings[1])) // ★★
+        entries.add(BarEntry(2f, ratings[2])) // ★★★
+        entries.add(BarEntry(3f, ratings[3])) // ★★★★
+        entries.add(BarEntry(4f, ratings[4])) // ★★★★★
 
         val barDataSet = BarDataSet(entries, "Bar Data Set")
         barDataSet.setColors(
@@ -107,6 +110,7 @@ class BookReviewListActivity : AppCompatActivity() {
         barDataSet.barShadowColor = Color.argb(40, 150, 150, 150)
         barDataSet.valueFormatter = DefaultValueFormatter(0) // 그래프 데이터를 정수형으로 변환
         barDataSet.valueTextSize = 10f
+        barDataSet.setDrawValues(true)
         val data = BarData(barDataSet)
         data.barWidth = 0.9f
         chart.data = data
@@ -121,8 +125,11 @@ class BookReviewListActivity : AppCompatActivity() {
         chart.description = description
         chart.legend.isEnabled = false
         chart.setPinchZoom(false)
+        chart.setScaleEnabled(false)
         chart.setDrawValueAboveBar(false)
-        chart.setTouchEnabled(true)
+        chart.setTouchEnabled(false)
+        chart.animateY(1000)
+        chart.setDrawValueAboveBar(false)
 
         val xAxis = chart.xAxis
         xAxis.setDrawGridLines(false)
@@ -138,7 +145,7 @@ class BookReviewListActivity : AppCompatActivity() {
 
         xAxis.labelCount = 5
         xAxis.valueFormatter = XAxisValueFormatter()
-        xAxis.textSize = 14f
+        xAxis.textSize = 12f
 
         val yRight = chart.axisRight
         yRight.setDrawAxisLine(true)
@@ -146,7 +153,5 @@ class BookReviewListActivity : AppCompatActivity() {
         yRight.isEnabled = false
         yRight.axisMaximum = 0f
         yRight.axisMinimum = 0f
-
-        chart.animateY(1000)
     }
 }
