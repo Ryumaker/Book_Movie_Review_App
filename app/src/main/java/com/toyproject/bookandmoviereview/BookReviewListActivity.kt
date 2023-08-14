@@ -2,19 +2,18 @@ package com.toyproject.bookandmoviereview
 
 import android.R.attr.value
 import android.annotation.SuppressLint
-import android.content.Context
-import android.graphics.Canvas
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.github.mikephil.charting.charts.HorizontalBarChart
 import com.github.mikephil.charting.components.Description
-import com.github.mikephil.charting.components.MarkerView
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
@@ -42,6 +41,30 @@ class XAxisValueFormatter : ValueFormatter() {
 class BookReviewListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBookReviewListBinding
     private lateinit var chart : HorizontalBarChart
+
+    private var recyclerView: RecyclerView? = null
+    private var recyclerViewBookReviewAdapter: RecyclerViewBookReviewAdapter? = null
+    private var bookReviewList = mutableListOf<BookReviewData>()
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun prepareBookReviewListData() {
+        var review = BookReviewData("Helene Moore", 4.0F, "2019.7.5", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", 10)
+        bookReviewList.add(review)
+
+        review = BookReviewData("Kate Doe", 4.5F, "2019.7.6", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", 5)
+        bookReviewList.add(review)
+
+        review = BookReviewData("Helene Moore", 4.0F, "2019.7.5", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", 10)
+        bookReviewList.add(review)
+
+        review = BookReviewData("Helene Moore", 4.0F, "2019.7.5", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", 10)
+        bookReviewList.add(review)
+
+        review = BookReviewData("Kate Doe", 4.5F, "2019.7.6", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", 5)
+        bookReviewList.add(review)
+
+        recyclerViewBookReviewAdapter!!.notifyDataSetChanged()
+    }
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,6 +98,14 @@ class BookReviewListActivity : AppCompatActivity() {
             ratings.add(93f) // ★★★★★
             setGraphData(ratings)
         }
+
+        recyclerView = binding.recyclerGridView
+
+        recyclerViewBookReviewAdapter = RecyclerViewBookReviewAdapter(this, bookReviewList)
+        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
+        recyclerView!!.layoutManager = layoutManager
+        recyclerView!!.adapter = recyclerViewBookReviewAdapter
+        prepareBookReviewListData()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
