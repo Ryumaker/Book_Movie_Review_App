@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +20,7 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.toyproject.bookandmoviereview.databinding.ActivityBookReviewListBinding
+
 
 class XAxisValueFormatter : ValueFormatter() {
     private var index = 0
@@ -82,6 +82,7 @@ class BookReviewListActivity : AppCompatActivity() {
         supportActionBar?.title = title
         supportActionBar?.setDisplayHomeAsUpEnabled(true) // 앱바에 back 버튼 활성화
 
+
         Glide.with(this).load(imageUrl).into(binding.imageBook)
         binding.textRatingsAndReviews.text = "Ratings & Reviews (${numberOfComments})"
 
@@ -110,6 +111,13 @@ class BookReviewListActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
+        if (menu != null) {
+            for (i in 0 until menu.size()) {
+                if (menu.getItem(i).itemId == R.id.action_search) {
+                    menu.getItem(i).isVisible = false // 검색 아이콘을 숨김
+                }
+            }
+        }
         return true
     }
 
