@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import java.time.format.DateTimeFormatter
 
 class RecyclerViewBookReviewAdapter constructor(private val context: Context, private val bookReviewList: List<BookReviewData>) : RecyclerView.Adapter<RecyclerViewBookReviewAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -30,8 +31,10 @@ class RecyclerViewBookReviewAdapter constructor(private val context: Context, pr
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val timeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd")
+
         holder.textNickname.text = bookReviewList[position].nickname
-        holder.textUploadDate.text = bookReviewList[position].uploadDate
+        holder.textUploadDate.text = bookReviewList[position].uploadDate.format(timeFormatter)
         holder.textReview.text = bookReviewList[position].review
         holder.textNumberOfThumbUp.text = bookReviewList[position].numberOfThumbUp.toString()
         holder.ratingBar.rating = bookReviewList[position].rating
