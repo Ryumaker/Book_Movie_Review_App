@@ -20,7 +20,8 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.toyproject.bookandmoviereview.databinding.ActivityBookReviewListBinding
-
+import java.time.LocalDate
+import java.util.*
 
 class XAxisValueFormatter : ValueFormatter() {
     private var index = 0
@@ -38,6 +39,24 @@ class XAxisValueFormatter : ValueFormatter() {
     }
 }
 
+data class ComparableThumpUp(var bookReviewData: BookReviewData) : Comparable<ComparableThumpUp> {
+    override fun compareTo(other: ComparableThumpUp): Int {
+        return other.bookReviewData.numberOfThumbUp - bookReviewData.numberOfThumbUp
+    }
+}
+
+data class ComparableUploadDate(var bookReviewData: BookReviewData) : Comparable<ComparableUploadDate> {
+    override fun compareTo(other: ComparableUploadDate): Int {
+        return if (other.bookReviewData.uploadDate > bookReviewData.uploadDate) {
+            1
+        } else if (other.bookReviewData.uploadDate < bookReviewData.uploadDate) {
+            -1
+        } else {
+            0
+        }
+    }
+}
+
 class BookReviewListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBookReviewListBinding
     private lateinit var chart : HorizontalBarChart
@@ -48,20 +67,26 @@ class BookReviewListActivity : AppCompatActivity() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun prepareBookReviewListData() {
-        var review = BookReviewData("Helene Moore", 4.0F, "2019.7.5", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", 10)
-        bookReviewList.add(review)
+        val pq = PriorityQueue<ComparableThumpUp>()
 
-        review = BookReviewData("Kate Doe", 4.5F, "2019.7.6", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", 5)
-        bookReviewList.add(review)
+        var review = BookReviewData("Helene Moore", 4.0F, LocalDate.of(2019, 7, 5), "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", 5)
+        pq.add(ComparableThumpUp(review))
 
-        review = BookReviewData("Helene Moore", 4.0F, "2019.7.5", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", 10)
-        bookReviewList.add(review)
+        review = BookReviewData("Kate Doe", 4.5F, LocalDate.of(2019, 7, 6), "Nullam sit amet facilisis tortor.", 1)
+        pq.add(ComparableThumpUp(review))
 
-        review = BookReviewData("Helene Moore", 4.0F, "2019.7.5", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", 10)
-        bookReviewList.add(review)
+        review = BookReviewData("Helene Moore", 4.0F, LocalDate.of(2019, 7, 7), "Duis tempus libero nec imperdiet blandit. Morbi dictum mollis mauris, vel cursus augue condimentum a.", 4)
+        pq.add(ComparableThumpUp(review))
 
-        review = BookReviewData("Kate Doe", 4.5F, "2019.7.6", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", 5)
-        bookReviewList.add(review)
+        review = BookReviewData("Helene Moore", 4.0F, LocalDate.of(2019, 7, 8), "Cras interdum eget dolor sed sollicitudin. Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 2)
+        pq.add(ComparableThumpUp(review))
+
+        review = BookReviewData("Kate Doe", 4.5F, LocalDate.of(2019, 7, 9), "Aenean nunc nisl, eleifend eu sodales ac, mattis id sapien.", 3)
+        pq.add(ComparableThumpUp(review))
+
+        while (pq.isNotEmpty()) {
+            pq.poll()?.let { bookReviewList.add(it.bookReviewData) }
+        }
 
         recyclerViewBookReviewAdapter!!.notifyDataSetChanged()
     }
