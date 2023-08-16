@@ -9,7 +9,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -95,6 +94,40 @@ class BookReviewListActivity : AppCompatActivity() {
         recyclerViewBookReviewAdapter!!.notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    private fun sortBookReviewByHighestThumpUp() {
+        val pq = PriorityQueue<ComparableThumpUp>()
+
+        for (bookReview in bookReviewList) {
+            pq.add(ComparableThumpUp(bookReview))
+        }
+
+        bookReviewList.clear()
+
+        while (pq.isNotEmpty()) {
+            pq.poll()?.let { bookReviewList.add(it.bookReviewData) }
+        }
+
+        recyclerViewBookReviewAdapter!!.notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun sortBookReviewByMostRecentUploadDate() {
+        val pq = PriorityQueue<ComparableUploadDate>()
+
+        for (bookReview in bookReviewList) {
+            pq.add(ComparableUploadDate(bookReview))
+        }
+
+        bookReviewList.clear()
+
+        while (pq.isNotEmpty()) {
+            pq.poll()?.let { bookReviewList.add(it.bookReviewData) }
+        }
+
+        recyclerViewBookReviewAdapter!!.notifyDataSetChanged()
+    }
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -125,14 +158,14 @@ class BookReviewListActivity : AppCompatActivity() {
         sortMethodSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 when (position) {
-                    0 -> {
-                        Toast.makeText(applicationContext, "최다 공감순", Toast.LENGTH_SHORT).show()
+                    0 -> { // 최다 공감순
+                        sortBookReviewByHighestThumpUp()
                     }
-                    1 -> {
-                        Toast.makeText(applicationContext, "최신순", Toast.LENGTH_SHORT).show()
+                    1 -> { // 최신순
+                        sortBookReviewByMostRecentUploadDate()
                     }
-                    else -> {
-                        Toast.makeText(applicationContext, "최다 공감순", Toast.LENGTH_SHORT).show()
+                    else -> { // 최다 공감순
+                        sortBookReviewByHighestThumpUp()
                     }
                 }
             }
