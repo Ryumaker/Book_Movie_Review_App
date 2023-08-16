@@ -6,6 +6,10 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -107,12 +111,36 @@ class BookReviewListActivity : AppCompatActivity() {
         supportActionBar?.title = title
         supportActionBar?.setDisplayHomeAsUpEnabled(true) // 앱바에 back 버튼 활성화
 
-
         Glide.with(this).load(imageUrl).into(binding.imageBook)
         binding.textRatingsAndReviews.text = "Ratings & Reviews (${numberOfComments})"
 
         binding.textRating.text = rating
         binding.textNumberOfReviews.text = "$numberOfComments Reviews"
+
+        val items = resources.getStringArray(R.array.sort_method)
+        val sortMethodSpinner = binding.sortMethodSpinner
+        val sortMethodAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
+
+        sortMethodSpinner.adapter = sortMethodAdapter
+        sortMethodSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                when (position) {
+                    0 -> {
+                        Toast.makeText(applicationContext, "최다 공감순", Toast.LENGTH_SHORT).show()
+                    }
+                    1 -> {
+                        Toast.makeText(applicationContext, "최신순", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        Toast.makeText(applicationContext, "최다 공감순", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+        }
+
+        sortMethodSpinner.setSelection(0) // 0번째 아이템(최다 공감순)이 기본적으로 선택되도록 설정
 
         if (numberOfComments != null) {
             setSkillGraph(numberOfComments.toFloat())
