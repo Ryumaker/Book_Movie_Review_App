@@ -1,17 +1,18 @@
 package com.toyproject.bookandmoviereview
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RatingBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import java.time.format.DateTimeFormatter
 
-class RecyclerViewBookReviewAdapter constructor(private val context: Context, private val bookReviewList: List<BookReviewData>) : RecyclerView.Adapter<RecyclerViewBookReviewAdapter.ViewHolder>() {
+class RecyclerViewBookReviewAdapter constructor(private val context: Context, private val bookReviewList: List<BookReviewData>, private val title: String?) : RecyclerView.Adapter<RecyclerViewBookReviewAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textNickname: TextView = itemView.findViewById(R.id.textNickname)
         val ratingBar: RatingBar = itemView.findViewById(R.id.ratingBar)
@@ -40,7 +41,13 @@ class RecyclerViewBookReviewAdapter constructor(private val context: Context, pr
         holder.ratingBar.rating = bookReviewList[position].rating
 
         holder.layoutReviewListGridItem.setOnClickListener {
-            Toast.makeText(context, bookReviewList[position].nickname, Toast.LENGTH_SHORT).show()
+            val intent = Intent(holder.itemView.context, BookReviewActivity::class.java)
+            intent.putExtra("title", title)
+            intent.putExtra("nickname", bookReviewList[position].nickname)
+            intent.putExtra("review", bookReviewList[position].review)
+            intent.putExtra("numberOfThumbUp", bookReviewList[position].numberOfThumbUp.toString())
+            intent.putExtra("rating", bookReviewList[position].rating)
+            ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
     }
 }

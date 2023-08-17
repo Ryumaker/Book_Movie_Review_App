@@ -191,7 +191,7 @@ class BookReviewListActivity : AppCompatActivity() {
 
         recyclerView = binding.recyclerGridView
 
-        recyclerViewBookReviewAdapter = RecyclerViewBookReviewAdapter(this, bookReviewList)
+        recyclerViewBookReviewAdapter = RecyclerViewBookReviewAdapter(this, bookReviewList, title)
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
         recyclerView!!.layoutManager = layoutManager
         recyclerView!!.adapter = recyclerViewBookReviewAdapter
