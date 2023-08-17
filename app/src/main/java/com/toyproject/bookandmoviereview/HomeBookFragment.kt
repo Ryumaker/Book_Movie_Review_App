@@ -36,22 +36,22 @@ class HomeBookFragment : Fragment() {
     private fun prepareBookListData() {
         val pq = PriorityQueue<ComparableScore>()
 
-        var book = BookData("부의 인문학", "우석", 4.3F, 273, "https://image.aladin.co.kr/product/28967/26/cover500/k032836725_1.jpg")
+        var book = BookData("부의 인문학", "우석", 4.3F, 273, 8, "https://image.aladin.co.kr/product/28967/26/cover500/k032836725_1.jpg")
         pq.add(ComparableScore(book))
 
-        book = BookData("세이노의 가르침", "세이노", 5.0F, 34, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
+        book = BookData("세이노의 가르침", "세이노", 5.0F, 34, 7, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
         pq.add(ComparableScore(book))
 
-        book = BookData("세이노의 가르침", "세이노", 3.7F, 12, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
+        book = BookData("세이노의 가르침", "세이노", 3.7F, 12, 6, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
         pq.add(ComparableScore(book))
 
-        book = BookData("세이노의 가르침", "세이노", 3.0F, 5, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
+        book = BookData("세이노의 가르침", "세이노", 3.0F, 5, 5, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
         pq.add(ComparableScore(book))
 
-        book = BookData("세이노의 가르침", "세이노", 3.5F, 12, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
+        book = BookData("세이노의 가르침", "세이노", 3.5F, 12, 4, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
         pq.add(ComparableScore(book))
 
-        book = BookData("세이노의 가르침", "세이노", 3.2F, 5, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
+        book = BookData("세이노의 가르침", "세이노", 3.2F, 5, 0, "https://image.aladin.co.kr/product/30929/51/cover500/s302832892_1.jpg")
         pq.add(ComparableScore(book))
 
         while (pq.isNotEmpty()) {
