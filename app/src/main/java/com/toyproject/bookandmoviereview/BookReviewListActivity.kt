@@ -137,6 +137,7 @@ class BookReviewListActivity : AppCompatActivity() {
         val title = intent.getStringExtra("title")
         val imageUrl = intent.getStringExtra("imageUrl")
         val rating = intent.getStringExtra("rating")
+        val numberOfReviews = intent.getStringExtra("numberOfReviews")
         val numberOfComments = intent.getStringExtra("numberOfComments")
 
         val toolbar = binding.toolbar
@@ -145,10 +146,12 @@ class BookReviewListActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true) // 앱바에 back 버튼 활성화
 
         Glide.with(this).load(imageUrl).into(binding.imageBook)
-        binding.textRatingsAndReviews.text = "Ratings & Reviews (${numberOfComments})"
+        binding.textRatingsAndReviews.text = "Ratings & Reviews (${numberOfReviews})"
 
         binding.textRating.text = rating
-        binding.textNumberOfReviews.text = "$numberOfComments Reviews"
+        binding.textNumberOfReviews.text = "$numberOfReviews Reviews"
+
+        binding.textNumberOfComments.text = "$numberOfComments Comments"
 
         val items = resources.getStringArray(R.array.sort_method)
         val sortMethodSpinner = binding.sortMethodSpinner
@@ -175,8 +178,8 @@ class BookReviewListActivity : AppCompatActivity() {
 
         sortMethodSpinner.setSelection(0) // 0번째 아이템(최다 공감순)이 기본적으로 선택되도록 설정
 
-        if (numberOfComments != null) {
-            setSkillGraph(numberOfComments.toFloat())
+        if (numberOfReviews != null) {
+            setSkillGraph(numberOfReviews.toFloat())
             val ratings =  ArrayList<Float>()
             ratings.add(27f) // ★
             ratings.add(45f) // ★★

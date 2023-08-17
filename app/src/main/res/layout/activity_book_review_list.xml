@@ -195,6 +195,15 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <TextView
+                android:id="@+id/textNumberOfComments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="0 Comments"
+                android:textSize="24sp"
+                android:fontFamily="@font/quicksand_medium" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerGridView"
                 android:layout_width="match_parent"
