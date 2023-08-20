@@ -16,8 +16,8 @@ class RecyclerViewBookAdapter constructor(private val getFragment: HomeBookFragm
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textListTitle: TextView = itemView.findViewById(R.id.textListTitle)
         val textListAuthor: TextView = itemView.findViewById(R.id.textListAuthor)
-        val textRating: TextView = itemView.findViewById(R.id.textRating)
-        val textNumberOfReviews: TextView = itemView.findViewById(R.id.textNumberOfReviews)
+        val textScore: TextView = itemView.findViewById(R.id.textScore)
+        val textNumberOfRatings: TextView = itemView.findViewById(R.id.textNumberOfRatings)
         val imageBook: ImageView = itemView.findViewById(R.id.imageBook)
         val layoutListItem: CardView = itemView.findViewById(R.id.layoutListItem)
     }
@@ -35,8 +35,8 @@ class RecyclerViewBookAdapter constructor(private val getFragment: HomeBookFragm
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textListTitle.text = bookList[position].title
         holder.textListAuthor.text = bookList[position].author
-        holder.textRating.text = bookList[position].rating.toString()
-        holder.textNumberOfReviews.text = "(" + bookList[position].numberOfReviews.toString() + ")"
+        holder.textScore.text = bookList[position].score.toString()
+        holder.textNumberOfRatings.text = "(${bookList[position].numberOfRatings})"
 
         // Image load by imageUrl
         Glide.with(holder.itemView.context).load(bookList[position].imageUrl).into(holder.imageBook)
@@ -44,9 +44,9 @@ class RecyclerViewBookAdapter constructor(private val getFragment: HomeBookFragm
         holder.layoutListItem.setOnClickListener {
             val intent = Intent(holder.itemView.context, BookReviewListActivity::class.java)
             intent.putExtra("title", bookList[position].title)
-            intent.putExtra("rating", bookList[position].rating.toString())
+            intent.putExtra("score", bookList[position].score.toString())
+            intent.putExtra("numberOfRatings", bookList[position].numberOfRatings.toString())
             intent.putExtra("numberOfReviews", bookList[position].numberOfReviews.toString())
-            intent.putExtra("numberOfComments", bookList[position].numberOfComments.toString())
             intent.putExtra("imageUrl", bookList[position].imageUrl)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }

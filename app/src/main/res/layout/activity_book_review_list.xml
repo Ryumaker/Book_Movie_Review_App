@@ -86,7 +86,7 @@
                         app:layout_constraintVertical_weight="1">
 
                         <TextView
-                            android:id="@+id/textRating"
+                            android:id="@+id/textScore"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="4.5"
@@ -103,14 +103,14 @@
                             android:textSize="30sp"
                             android:fontFamily="@font/manrope_bold"
                             android:textColor="#FFD02B"
-                            app:layout_constraintStart_toEndOf="@id/textRating"
+                            app:layout_constraintStart_toEndOf="@id/textScore"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/textNumberOfReviews"
+                            android:id="@+id/textNumberOfRatings"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="273 Reviews"
+                            android:text="273 Ratings"
                             android:textSize="13sp"
                             android:textColor="#9B9B9B"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -196,11 +196,11 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/textNumberOfComments"
+                android:id="@+id/textNumberOfReviews"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="0 Comments"
+                android:text="0 Reviews"
                 android:textSize="24sp"
                 android:fontFamily="@font/quicksand_medium" />
 

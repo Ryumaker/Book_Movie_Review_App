@@ -41,7 +41,7 @@
                 android:src="@drawable/ic_star_rate" />
 
             <TextView
-                android:id="@+id/textRating"
+                android:id="@+id/textScore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5.0"
@@ -50,7 +50,7 @@
                 android:layout_marginStart="3dp" />
 
             <TextView
-                android:id="@+id/textNumberOfReviews"
+                android:id="@+id/textNumberOfRatings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="(273)"

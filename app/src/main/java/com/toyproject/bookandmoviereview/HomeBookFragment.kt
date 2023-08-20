@@ -14,13 +14,13 @@ import java.util.*
 
 data class ComparableScore(var bookData: BookData) : Comparable<ComparableScore> {
     override fun compareTo(other: ComparableScore): Int {
-        return ((other.bookData.rating - bookData.rating) * 10).toInt()
+        return ((other.bookData.score - bookData.score) * 10).toInt()
     }
 }
 
 data class ComparableReviews(var bookData: BookData) : Comparable<ComparableReviews> {
     override fun compareTo(other: ComparableReviews): Int {
-        return other.bookData.numberOfComments - bookData.numberOfComments
+        return other.bookData.numberOfReviews - bookData.numberOfReviews
     }
 }
 
