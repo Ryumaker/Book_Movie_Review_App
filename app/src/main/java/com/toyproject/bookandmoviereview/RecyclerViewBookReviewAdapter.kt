@@ -44,6 +44,7 @@ class RecyclerViewBookReviewAdapter constructor(private val context: Context, pr
             val intent = Intent(holder.itemView.context, BookReviewActivity::class.java)
             intent.putExtra("title", title)
             intent.putExtra("nickname", bookReviewList[position].nickname)
+            intent.putExtra("uploadDate", bookReviewList[position].uploadDate.format(timeFormatter))
             intent.putExtra("review", bookReviewList[position].review)
             intent.putExtra("numberOfThumbUp", bookReviewList[position].numberOfThumbUp.toString())
             intent.putExtra("score", bookReviewList[position].score)
