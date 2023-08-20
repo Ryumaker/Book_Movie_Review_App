@@ -38,7 +38,7 @@ class RecyclerViewBookReviewAdapter constructor(private val context: Context, pr
         holder.textUploadDate.text = bookReviewList[position].uploadDate.format(timeFormatter)
         holder.textReview.text = bookReviewList[position].review
         holder.textNumberOfThumbUp.text = bookReviewList[position].numberOfThumbUp.toString()
-        holder.ratingBar.rating = bookReviewList[position].rating
+        holder.ratingBar.rating = bookReviewList[position].score
 
         holder.layoutReviewListGridItem.setOnClickListener {
             val intent = Intent(holder.itemView.context, BookReviewActivity::class.java)
@@ -46,7 +46,7 @@ class RecyclerViewBookReviewAdapter constructor(private val context: Context, pr
             intent.putExtra("nickname", bookReviewList[position].nickname)
             intent.putExtra("review", bookReviewList[position].review)
             intent.putExtra("numberOfThumbUp", bookReviewList[position].numberOfThumbUp.toString())
-            intent.putExtra("rating", bookReviewList[position].rating)
+            intent.putExtra("score", bookReviewList[position].score)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
     }
