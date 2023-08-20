@@ -1,4 +1,4 @@
-package com.toyproject.bookandmoviereview
+package com.toyproject.bookandmoviereview.models
 
 import java.time.LocalDate
 

@@ -23,6 +23,7 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.toyproject.bookandmoviereview.databinding.ActivityBookReviewListBinding
+import com.toyproject.bookandmoviereview.models.BookReviewData
 import java.time.LocalDate
 import java.util.*
 

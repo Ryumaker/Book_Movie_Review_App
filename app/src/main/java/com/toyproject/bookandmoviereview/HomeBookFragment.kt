@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.toyproject.bookandmoviereview.databinding.FragmentHomeBookBinding
+import com.toyproject.bookandmoviereview.models.BookData
 import java.util.*
 
 data class ComparableScore(var bookData: BookData) : Comparable<ComparableScore> {

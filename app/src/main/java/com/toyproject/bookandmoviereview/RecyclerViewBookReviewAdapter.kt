@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.toyproject.bookandmoviereview.models.BookReviewData
 import java.time.format.DateTimeFormatter
 
 class RecyclerViewBookReviewAdapter constructor(private val context: Context, private val bookReviewList: List<BookReviewData>, private val title: String?) : RecyclerView.Adapter<RecyclerViewBookReviewAdapter.ViewHolder>() {
