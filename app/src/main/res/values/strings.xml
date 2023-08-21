@@ -49,6 +49,7 @@
     <string name="recommended">Recommended</string>
     <string name="icon_star">★</string>
     <string name="thumb_up_emoji">👍</string>
+    <string name="writing_review">리뷰 작성</string>
     <string-array name="sort_method">
         <item>최다 공감순</item>
         <item>최신순</item>
