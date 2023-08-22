@@ -213,6 +213,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
+                    android:id="@+id/btnWritingReview"
                     android:layout_width="120dp"
                     android:layout_height="50dp"
                     android:text="@string/writing_review"
