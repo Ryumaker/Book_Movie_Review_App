@@ -2,6 +2,7 @@ package com.toyproject.bookandmoviereview
 
 import android.R.attr.value
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
@@ -178,6 +179,12 @@ class BookReviewListActivity : AppCompatActivity() {
         }
 
         sortMethodSpinner.setSelection(0) // 0번째 아이템(최다 공감순)이 기본적으로 선택되도록 설정
+
+        binding.btnWritingReview.setOnClickListener {
+            val intent = Intent(this, BookReviewUploadActivity::class.java)
+            intent.putExtra("title", title)
+            startActivity(intent)
+        }
 
         if (numberOfRatings != null) {
             setSkillGraph(numberOfRatings.toFloat())
