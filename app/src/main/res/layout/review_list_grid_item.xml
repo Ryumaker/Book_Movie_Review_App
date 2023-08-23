@@ -71,7 +71,9 @@
                     android:layout_centerVertical="true"
                     android:isIndicator="true"
                     android:numStars="5"
-                    android:progressTint="#FFB400"
+                    android:progressTint="@color/rating_bar_progress_tint"
+                    android:secondaryProgressTint="@android:color/transparent"
+                    android:progressBackgroundTint="@color/rating_bar_progress_tint"
                     android:rating="4.5"
                     android:stepSize="0.5" />
 
