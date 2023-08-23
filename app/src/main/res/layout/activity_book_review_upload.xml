@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="35dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,5 +52,69 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:text="평점"
+            android:textSize="14sp"
+            android:fontFamily="@font/inter_regular" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:numStars="5"
+            android:progressTint="@color/rating_bar_progress_tint"
+            android:secondaryProgressTint="@android:color/transparent"
+            android:progressBackgroundTint="@color/rating_bar_background_tint"
+            android:rating="0.5"
+            android:stepSize="0.5"
+            android:isIndicator="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="16dp"
+            android:text="리뷰 작성"
+            android:textSize="14sp"
+            android:fontFamily="@font/inter_regular" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="30dp"
+            android:background="#F7F7F7">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top|start"
+                android:paddingTop="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:background="@android:color/transparent"
+                android:hint="리뷰 작성"
+                android:textSize="14sp"
+                android:fontFamily="@font/inter_bold"
+                android:inputType="text|textMultiLine"
+                android:maxLength="500"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/btnReviewUpload"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="리뷰 업로드"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/inter_bold"
+            android:backgroundTint="#495AF3"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
