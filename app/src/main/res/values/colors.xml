@@ -11,4 +11,6 @@
     <color name="dark_mode_home_background">#1E1E20</color>
     <color name="horizontal_chart">#FFB400</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="rating_bar_background_tint">#D0CCD1</color>
+    <color name="rating_bar_progress_tint">#FFB400</color>
 </resources>
