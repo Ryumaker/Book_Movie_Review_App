@@ -7,7 +7,7 @@
     <color name="dark_mode_login_button_background">#343638</color>
     <color name="light_mode_toolbar_background">#FFB400</color>
     <color name="dark_mode_toolbar_background">#1E1E20</color>
-    <color name="light_mode_home_background">#DCDCDC</color>
+    <color name="light_mode_home_background">#F7F7F7</color>
     <color name="dark_mode_home_background">#1E1E20</color>
     <color name="horizontal_chart">#FFB400</color>
     <color name="white">#FFFFFFFF</color>
