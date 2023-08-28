@@ -1,12 +1,13 @@
 package com.toyproject.bookandmoviereview
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.toyproject.bookandmoviereview.models.DiscussionBookData
 import java.time.format.DateTimeFormatter
@@ -43,7 +44,12 @@ class RecyclerViewDiscussionBoardBookAdapter constructor(
         holder.textNumberOfComments.text = "  ${discussionBookList[position].numberOfComments}"
 
         holder.layoutListItem.setOnClickListener {
-            Toast.makeText(holder.itemView.context, discussionBookList[position].bookTitle, Toast.LENGTH_SHORT).show()
+            val intent = Intent(holder.itemView.context, DiscussionBoardBookDetailActivity::class.java)
+            intent.putExtra("bookTitle", discussionBookList[position].bookTitle)
+            intent.putExtra("discussionTitle", discussionBookList[position].discussionTitle)
+            intent.putExtra("nickname", discussionBookList[position].nickname)
+            intent.putExtra("numberOfComments", discussionBookList[position].numberOfComments)
+            ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
     }
 }
