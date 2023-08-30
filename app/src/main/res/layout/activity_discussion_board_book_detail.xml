@@ -5,14 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F9F9F9"
     tools:context=".DiscussionBoardBookDetailActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -100,7 +98,7 @@
                     android:textSize="14sp"
                     android:textColor="#000000"
                     android:fontFamily="@font/noto_sans_kr_regular"
-                    android:hint="이 토의 주제에 대한 댓글 쓰기"
+                    android:hint="@string/write_comment_for_this_topic"
                     android:textColorHint="#808080"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView"
